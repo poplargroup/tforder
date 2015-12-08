@@ -16,7 +16,7 @@ public class PropertyFactory {
 
 	private static Properties prop;
 
-	public Properties getProperties() {
+	public static Properties getProperties() {
 		if (prop == null) {
 			prop = new Properties();
 			loadProperty();
@@ -24,7 +24,7 @@ public class PropertyFactory {
 		return prop;
 	}
 
-	public void loadProperty() {
+	public static void loadProperty() {
 		try {
 			InputStream inFile = new BufferedInputStream(new FileInputStream("param.properties"));
 			prop.load(inFile);
@@ -35,7 +35,7 @@ public class PropertyFactory {
 		}
 	}
 
-	public void saveProperty() {
+	public static void saveProperty() {
 		try {
 			FileOutputStream outFile = new FileOutputStream("param.properties", true);
 			prop.store(outFile, "The New properties file");

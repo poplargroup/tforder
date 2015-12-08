@@ -3,25 +3,31 @@ package com.dfh.tforder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import com.dfh.tforder.order.OrderFeed;
 
 /**
  * @author zhaoyang
  * 
  */
 @SuppressWarnings("serial")
-public class MainPanel extends JPanel implements ActionListener {
+public class OrderPanel extends JPanel {
 
-	private JTextArea consoleArea = new JTextArea();
+	private OrderFeed orderFeed = new OrderFeed();
 
-	public MainPanel() {
+	private static JTextArea consoleArea = new JTextArea();
+
+	public static JTextArea getConsoleArea() {
+		return consoleArea;
+	}
+
+	public OrderPanel() {
 		init();
 	}
 
@@ -36,26 +42,31 @@ public class MainPanel extends JPanel implements ActionListener {
 		consoleArea.setBackground(Color.black);
 		consoleArea.setForeground(Color.CYAN);
 		consoleArea.setText("");
-
-		JButton clearButton = new JButton("清空");
-		clearButton.addActionListener(this);
-		add(clearButton, BorderLayout.SOUTH);
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		String s = e.getActionCommand();
-		if (s.equals("清空")) {
-			consoleArea.setText("");
-		}
 	}
 
 	public void start() {
-		consoleArea.append("startted!\n");
+		boolean ticked = TickPanel.getTicked();
+		if (!ticked) {
+			JOptionPane.showMessageDialog(this, "请先订阅行情");
+			return;
+		}
+		boolean started = OrderFeed.getStarted();
+		if (started) {
+			JOptionPane.showMessageDialog(this, "已经启动，不需重新启动");
+			return;
+		}
+		consoleArea.append("started!\n");
+		orderFeed.start();
 	}
 
 	public void stop() {
+		boolean running = OrderFeed.getRunning();
+		if (running) {
+			JOptionPane.showMessageDialog(this, "订单正在执行，不能停止");
+			return;
+		}
+		orderFeed.stop();
 		consoleArea.append("stopped!\n");
-
 	}
 
 }
