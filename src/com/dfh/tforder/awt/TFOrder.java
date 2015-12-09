@@ -1,4 +1,4 @@
-package com.dfh.tforder;
+package com.dfh.tforder.awt;
 
 import java.awt.BorderLayout;
 import java.awt.Menu;
@@ -36,13 +36,7 @@ public class TFOrder extends JFrame implements ActionListener {
 	}
 
 	private void init() {
-		boolean checked = false;
-		checked = ValidChecker.check();
-		if (!checked) {
-			JOptionPane.showMessageDialog(this, "授权已过期，请联系原作者更换license文件");
-			System.exit(0);
-		}
-		// Global.getInstance().setCurrentDirectory(FileSystemView.getFileSystemView().getHomeDirectory());
+		ValidChecker.check(this);
 		MenuBar meneBar = new MenuBar();
 		Menu menuFile = new Menu("文件");
 		MenuItem menuFileTick = new MenuItem("订阅");

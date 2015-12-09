@@ -4,8 +4,8 @@ import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
-import com.dfh.tforder.OrderPanel;
-import com.dfh.tforder.TickPanel;
+import com.dfh.tforder.awt.OrderPanel;
+import com.dfh.tforder.awt.TickPanel;
 
 public class ConsoleUtil {
 

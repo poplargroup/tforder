@@ -1,4 +1,4 @@
-package com.dfh.tforder;
+package com.dfh.tforder.awt;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -77,7 +77,7 @@ public class TickPanel extends JPanel implements ActionListener {
 			return;
 		}
 		consoleArea.append("started!\n");
-		
+
 		Properties prop = PropertyFactory.getProperties();
 		String host = prop.getProperty("host");
 		int port = Integer.parseInt(prop.getProperty("port"));

@@ -341,6 +341,7 @@ public class RSACoder {
 	public static String decrypt(PrivateKey privateKey, String enStr) {
 		try {
 			cipher.init(Cipher.DECRYPT_MODE, privateKey);
+//			byte[] deBytes = cipher.doFinal((new BASE64Decoder()).decodeBuffer(enStr));
 			byte[] deBytes = cipher.doFinal(Base64Util.decode(enStr));
 			return new String(deBytes);
 		} catch (InvalidKeyException e) {
@@ -397,20 +398,20 @@ public class RSACoder {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-//		// 初始化密钥
-//		// 生成密钥对
-//		Map<String, Object> keyMap = RSACoder.initKey();
-//		byte[] publicKeyByte = RSACoder.getPublicKey(keyMap);
-//		byte[] privateKeyByte = RSACoder.getPrivateKey(keyMap);
-//		String publicKeyStr = Base64Util.encode(publicKeyByte);
-//		String privateKeyStr = Base64Util.encode(privateKeyByte);
-//		System.out.println("公钥：" + publicKeyStr);
-//		System.out.println("私钥：" + privateKeyStr);
-//
-//		publicKeyByte = Base64Util.decode(publicKeyStr);
-//		privateKeyByte = Base64Util.decode(privateKeyStr);
-//		System.out.println("公钥：" + Base64Util.encode(publicKeyByte));
-//		System.out.println("私钥：" + Base64Util.encode(privateKeyByte));
+		// // 初始化密钥
+		// // 生成密钥对
+		// Map<String, Object> keyMap = RSACoder.initKey();
+		// byte[] publicKeyByte = RSACoder.getPublicKey(keyMap);
+		// byte[] privateKeyByte = RSACoder.getPrivateKey(keyMap);
+		// String publicKeyStr = Base64Util.encode(publicKeyByte);
+		// String privateKeyStr = Base64Util.encode(privateKeyByte);
+		// System.out.println("公钥：" + publicKeyStr);
+		// System.out.println("私钥：" + privateKeyStr);
+		//
+		// publicKeyByte = Base64Util.decode(publicKeyStr);
+		// privateKeyByte = Base64Util.decode(privateKeyStr);
+		// System.out.println("公钥：" + Base64Util.encode(publicKeyByte));
+		// System.out.println("私钥：" + Base64Util.encode(privateKeyByte));
 
 		String desKey = "2016-01-01";
 		String publicKeyStr = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxaeeTJBJIMo+OzJtiX5hBXgNf/2FZnAajqDV4BhZLFUIIbgaBSd6WyKHTKOll4PYftX8sg/g3/IDBgCRr/u6+VWM8btUQa9dQLfiNlvfR1+t7zbJVYHai/XavSpgXbkqXzxwSLCs9WvwnWTcToVCQBCh3fSR7h90SRPW21VUyugJc/+bzjuLbehw19MESzj1MZ/DMzkmuzbUW+0rLJkXLN9WvYUMCCls4+YVkS6+nu+9glylt+/+7LbywL+CiAU5NDNP3L003qIMyiBA+bsULESDA1Y5bzKpCbEKB4H5iBdtnffawn5C7c+vKIc/J1obz6q+bI0JGnRzeyQlpVwVQQIDAQAB";

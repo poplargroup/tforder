@@ -4,7 +4,7 @@ import java.net.URL;
 
 /**
  * @author zhaoyang
- *
+ * 
  */
 public class Utility {
 

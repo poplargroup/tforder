@@ -61,7 +61,7 @@ public class ImmediateThread implements Runnable {
 			MsgTime = updateDelegateStatusList.get(listSize - 1).getMsgTime();
 			if (volumeComplete == volume) {
 				String priceCompleteStr = updateDelegateStatusList.get(listSize - 1).getPrice();
-				float priceComplete = Math.round(new Float(priceCompleteStr)*Constant.leverage*1000)/1000;
+				float priceComplete = Math.round(new Float(priceCompleteStr) * Constant.leverage * 1000) / 1000;
 				StringBuffer sb = new StringBuffer();
 				sb.append("0000Î¯ÍÐ½áÊø");
 				sb.append("  MsgId£º").append(MsgId);

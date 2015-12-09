@@ -83,5 +83,5 @@ public class UpdateDelegateStatus {
 	public void setPrice(String price) {
 		Price = price;
 	}
-	
+
 }

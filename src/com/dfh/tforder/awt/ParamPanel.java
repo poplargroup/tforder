@@ -1,4 +1,4 @@
-package com.dfh.tforder;
+package com.dfh.tforder.awt;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
@@ -246,8 +246,8 @@ public class ParamPanel extends JPanel implements ActionListener {
 		prop.setProperty("host", hostField.getText());
 		prop.setProperty("port", portField.getText());
 		String path = pathField.getText();
-		if (!path.endsWith("\\")){
-			path = path+"\\";
+		if (!path.endsWith("\\")) {
+			path = path + "\\";
 		}
 		prop.setProperty("path", path);
 		prop.setProperty("accountNo", accountNoField.getText());
@@ -261,7 +261,7 @@ public class ParamPanel extends JPanel implements ActionListener {
 		prop.setProperty("buyBadSellGood", buyBadSellGoodButton.isSelected() ? "1" : "0");
 		prop.setProperty("sellBadBuyGood", sellBadBuyGoodButton.isSelected() ? "1" : "0");
 		PropertyFactory.saveProperty();
-		
+
 		update();
 	}
 

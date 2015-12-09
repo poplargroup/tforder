@@ -1,6 +1,5 @@
 package com.dfh.tforder.tick;
 
-
 public class QuoteFactory {
 
 	private static Quote QuoteA;

@@ -15,12 +15,12 @@ public class OrderFeed implements Runnable {
 		return started.get();
 	}
 
-	public static AtomicBoolean running = new AtomicBoolean(false); 
-	
+	public static AtomicBoolean running = new AtomicBoolean(false);
+
 	public static Boolean getRunning() {
 		return running.get();
 	}
-	
+
 	public void start() {
 		started.set(true);
 		Thread thread = new Thread(this);

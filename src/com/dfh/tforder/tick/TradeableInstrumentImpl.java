@@ -1,6 +1,5 @@
 package com.dfh.tforder.tick;
 
-
 public class TradeableInstrumentImpl implements TradeableInstrument {
 
 	private Exchange exchange;

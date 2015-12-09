@@ -1,4 +1,4 @@
-package com.dfh.tforder;
+package com.dfh.tforder.awt;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

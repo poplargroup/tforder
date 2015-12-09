@@ -10,8 +10,10 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import com.dfh.tforder.util.PropertyFactory;
-import com.dfh.tforder.util.Utility;
 
 public class ValidChecker {
 
@@ -25,10 +27,11 @@ public class ValidChecker {
 		this.currentDirectory = currentDirectory;
 	}
 
-	public static boolean check() {
-		File licFile = new File(Utility.getURL(ValidChecker.class, "license.lic").getPath());
+	public static void check(JFrame jf) {
+		File licFile = new File("license.lic");
 		if (!licFile.exists()) {
-			return false;
+			JOptionPane.showMessageDialog(jf, "license文件未找到");
+			System.exit(0);
 		}
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(licFile));
@@ -39,19 +42,21 @@ public class ValidChecker {
 				PrivateKey privateKey = RSACoder.getPrivateKey(privateKeyStr);
 				String licDe = RSACoder.decrypt(privateKey, licEn);
 				if (!isDate(licDe)) {
-					return false;
+					JOptionPane.showMessageDialog(jf, "license文件错误");
+					System.exit(0);
 				}
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				String today = df.format(new Date());
 				if (licDe.compareTo(today) < 0) {
-					return false;
+					JOptionPane.showMessageDialog(jf, "license文件已过期");
+					System.exit(0);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			JOptionPane.showMessageDialog(jf, "license文件校验错误");
+			System.exit(0);
 		}
-		return true;
 	}
 
 	/**
