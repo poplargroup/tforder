@@ -26,6 +26,12 @@ import com.dfh.tforder.util.PropertyFactory;
 @SuppressWarnings("serial")
 public class ParamPanel extends JPanel implements ActionListener {
 
+	private JTextField hostField = new JTextField();
+	private JTextField portField = new JTextField();
+	private JTextField pathField = new JTextField();
+	private JTextField accountNoField = new JTextField();
+	private JTextField combinationNoField = new JTextField();
+	private JTextField seatNoField = new JTextField();
 	private JTextField liquidBadField = new JTextField();
 	private JTextField liquidGoodField = new JTextField();
 	private JTextField priceThresholdField = new JTextField();
@@ -44,6 +50,25 @@ public class ParamPanel extends JPanel implements ActionListener {
 
 		JPanel setPanel = new JPanel();
 		add(setPanel, BorderLayout.CENTER);
+
+		JLabel hostLabel = new JLabel("行情订阅ip");
+		setPanel.add(hostLabel);
+		setPanel.add(hostField);
+		JLabel portLabel = new JLabel("行情订阅port");
+		setPanel.add(portLabel);
+		setPanel.add(portField);
+		JLabel pathLabel = new JLabel("交互文件路径");
+		setPanel.add(pathLabel);
+		setPanel.add(pathField);
+		JLabel accountNoLabel = new JLabel("AccountNo");
+		setPanel.add(accountNoLabel);
+		setPanel.add(accountNoField);
+		JLabel combinationNoLabel = new JLabel("CombinationNo");
+		setPanel.add(combinationNoLabel);
+		setPanel.add(combinationNoField);
+		JLabel seatNoLabel = new JLabel("SeatNo");
+		setPanel.add(seatNoLabel);
+		setPanel.add(seatNoField);
 		JLabel liquidBadLabel = new JLabel("流动性不好的产品");
 		setPanel.add(liquidBadLabel);
 		setPanel.add(liquidBadField);
@@ -70,44 +95,86 @@ public class ParamPanel extends JPanel implements ActionListener {
 		GridBagConstraints s = new GridBagConstraints();// 定义一个GridBagConstraints，是用来控制添加进的组件的显示位置
 		s.gridx = 0;
 		s.gridy = 0;
-		layout.setConstraints(liquidBadLabel, s);
+		layout.setConstraints(hostLabel, s);
 		s.gridx = 1;
 		s.gridy = 0;
+		hostField.setColumns(20);
+		layout.setConstraints(hostField, s);
+		s.gridx = 0;
+		s.gridy = 1;
+		layout.setConstraints(portLabel, s);
+		s.gridx = 1;
+		s.gridy = 1;
+		portField.setColumns(20);
+		layout.setConstraints(portField, s);
+		s.gridx = 0;
+		s.gridy = 2;
+		layout.setConstraints(pathLabel, s);
+		s.gridx = 1;
+		s.gridy = 2;
+		pathField.setColumns(20);
+		layout.setConstraints(pathField, s);
+		s.gridx = 0;
+		s.gridy = 3;
+		layout.setConstraints(accountNoLabel, s);
+		s.gridx = 1;
+		s.gridy = 3;
+		accountNoField.setColumns(20);
+		layout.setConstraints(accountNoField, s);
+		s.gridx = 0;
+		s.gridy = 4;
+		layout.setConstraints(combinationNoLabel, s);
+		s.gridx = 1;
+		s.gridy = 4;
+		combinationNoField.setColumns(20);
+		layout.setConstraints(combinationNoField, s);
+		s.gridx = 0;
+		s.gridy = 5;
+		layout.setConstraints(seatNoLabel, s);
+		s.gridx = 1;
+		s.gridy = 5;
+		seatNoField.setColumns(20);
+		layout.setConstraints(seatNoField, s);
+		s.gridx = 0;
+		s.gridy = 6;
+		layout.setConstraints(liquidBadLabel, s);
+		s.gridx = 1;
+		s.gridy = 6;
 		liquidBadField.setColumns(20);
 		layout.setConstraints(liquidBadField, s);
 		s.gridx = 0;
-		s.gridy = 1;
+		s.gridy = 7;
 		layout.setConstraints(liquidGoodLabel, s);
 		s.gridx = 1;
-		s.gridy = 1;
+		s.gridy = 7;
 		liquidGoodField.setColumns(20);
 		layout.setConstraints(liquidGoodField, s);
 		s.gridx = 0;
-		s.gridy = 2;
+		s.gridy = 8;
 		layout.setConstraints(priceThresholdLabel, s);
 		s.gridx = 1;
-		s.gridy = 2;
+		s.gridy = 8;
 		priceThresholdField.setColumns(20);
 		layout.setConstraints(priceThresholdField, s);
 		s.gridx = 0;
-		s.gridy = 3;
+		s.gridy = 9;
 		layout.setConstraints(lotThresholdLabel, s);
 		s.gridx = 1;
-		s.gridy = 3;
+		s.gridy = 9;
 		lotThresholdField.setColumns(20);
 		layout.setConstraints(lotThresholdField, s);
 		s.gridx = 0;
-		s.gridy = 4;
+		s.gridy = 10;
 		layout.setConstraints(deltaPriceLabel, s);
 		s.gridx = 1;
-		s.gridy = 4;
+		s.gridy = 10;
 		deltaPriceField.setColumns(20);
 		layout.setConstraints(deltaPriceField, s);
 		s.gridx = 1;
-		s.gridy = 5;
+		s.gridy = 11;
 		layout.setConstraints(buyBadSellGoodButton, s);
 		s.gridx = 1;
-		s.gridy = 6;
+		s.gridy = 12;
 		layout.setConstraints(sellBadBuyGoodButton, s);
 
 		JPanel buttonPanel = new JPanel();
@@ -129,6 +196,12 @@ public class ParamPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String s = e.getActionCommand();
 		if (s.equals("清空")) {
+			hostField.setText("");
+			portField.setText("");
+			pathField.setText("");
+			accountNoField.setText("");
+			combinationNoField.setText("");
+			seatNoField.setText("");
 			liquidBadField.setText("");
 			liquidGoodField.setText("");
 			priceThresholdField.setText("");
@@ -149,6 +222,13 @@ public class ParamPanel extends JPanel implements ActionListener {
 
 	public void update() {
 		prop = PropertyFactory.getProperties();
+
+		hostField.setText(prop.getProperty("host"));
+		portField.setText(prop.getProperty("port"));
+		pathField.setText(prop.getProperty("path"));
+		accountNoField.setText(prop.getProperty("accountNo"));
+		combinationNoField.setText(prop.getProperty("combinationNo"));
+		seatNoField.setText(prop.getProperty("seatNo"));
 		liquidBadField.setText(prop.getProperty("liquidBad"));
 		liquidGoodField.setText(prop.getProperty("liquidGood"));
 		priceThresholdField.setText(prop.getProperty("priceThreshold"));
@@ -163,6 +243,16 @@ public class ParamPanel extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(this, "每单最大手数要大于0");
 			return;
 		}
+		prop.setProperty("host", hostField.getText());
+		prop.setProperty("port", portField.getText());
+		String path = pathField.getText();
+		if (!path.endsWith("\\")){
+			path = path+"\\";
+		}
+		prop.setProperty("path", path);
+		prop.setProperty("accountNo", accountNoField.getText());
+		prop.setProperty("combinationNo", combinationNoField.getText());
+		prop.setProperty("seatNo", seatNoField.getText());
 		prop.setProperty("liquidBad", liquidBadField.getText());
 		prop.setProperty("liquidGood", liquidGoodField.getText());
 		prop.setProperty("priceThreshold", priceThresholdField.getText());
@@ -171,6 +261,8 @@ public class ParamPanel extends JPanel implements ActionListener {
 		prop.setProperty("buyBadSellGood", buyBadSellGoodButton.isSelected() ? "1" : "0");
 		prop.setProperty("sellBadBuyGood", sellBadBuyGoodButton.isSelected() ? "1" : "0");
 		PropertyFactory.saveProperty();
+		
+		update();
 	}
 
 }

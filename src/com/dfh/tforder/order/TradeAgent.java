@@ -4,10 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.dfh.tforder.util.ConsoleUtil;
 import com.dfh.tforder.util.FileUtil;
+import com.dfh.tforder.util.PropertyFactory;
 
 public class TradeAgent {
 
@@ -31,6 +33,11 @@ public class TradeAgent {
 		delegate.setOpenOrClose("O");
 		// 价格、数量由参数传入
 
+		Properties prop = PropertyFactory.getProperties();
+		String accountNo = prop.getProperty("accountNo");
+		String combinationNo = prop.getProperty("combinationNo");
+		String seatNo = prop.getProperty("seatNo");
+
 		StringBuilder delegateStr = new StringBuilder();
 		delegateStr.append("01_Version@").append(delegate.getVersion());
 		delegateStr.append("|02_MsgTime@").append(delegate.getMsgTime());
@@ -44,7 +51,7 @@ public class TradeAgent {
 		delegateStr.append("|10_Price@").append(delegate.getPrice());
 		delegateStr.append("|11_Quantity@").append(delegate.getQuantity());
 		delegateStr.append("|12_OrderType@LIMIT");
-		delegateStr.append("|13_note@[AccountNo=918039;CombinationNo=222;SeatNo=015609]");
+		delegateStr.append("|13_note@[AccountNo=").append(accountNo).append(";CombinationNo=").append(combinationNo).append(";SeatNo=").append(seatNo).append("]");
 		delegateStr.append("\r\n");
 
 		FileUtil.WriteIn(delegateStr.toString());

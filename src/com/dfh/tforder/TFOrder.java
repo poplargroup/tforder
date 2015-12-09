@@ -39,7 +39,7 @@ public class TFOrder extends JFrame implements ActionListener {
 		boolean checked = false;
 		checked = ValidChecker.check();
 		if (!checked) {
-			JOptionPane.showMessageDialog(this, "请更换license.lic文件\n新的license.lic文件请放于安装路径bin文件夹下");
+			JOptionPane.showMessageDialog(this, "授权已过期，请联系原作者更换license文件");
 			System.exit(0);
 		}
 		// Global.getInstance().setCurrentDirectory(FileSystemView.getFileSystemView().getHomeDirectory());

@@ -77,11 +77,13 @@ public class TickPanel extends JPanel implements ActionListener {
 			return;
 		}
 		consoleArea.append("started!\n");
-		feed.setHost("172.16.47.17");
-		feed.setPort(6999);
-		feed.springInit();
-
+		
 		Properties prop = PropertyFactory.getProperties();
+		String host = prop.getProperty("host");
+		int port = Integer.parseInt(prop.getProperty("port"));
+		feed.setHost(host);
+		feed.setPort(port);
+		feed.springInit();
 		String symbolA = prop.getProperty("liquidBad");
 		String symbolB = prop.getProperty("liquidGood");
 

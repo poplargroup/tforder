@@ -8,12 +8,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class FileUtil {
 
 	public static void WriteIn(String str) {
 		try {
-			File file = new File("D:\\live\\in.txt");
+			Properties prop = PropertyFactory.getProperties();
+			String path = prop.getProperty("path");
+			String inFileName = path+"in.txt";
+			File file = new File(inFileName);
 			if (!file.exists()) {
 				file.createNewFile();
 			}
@@ -31,7 +35,10 @@ public class FileUtil {
 	public static List<String> ReadOut(String MsgId, String Orderidx, String Msg, String MsgTime) {
 		List<String> outList = new ArrayList<String>();
 		try {
-			File file = new File("D:\\live\\out.txt");
+			Properties prop = PropertyFactory.getProperties();
+			String path = prop.getProperty("path");
+			String outFileName = path+"out.txt";
+			File file = new File(outFileName);
 			if (!file.exists() || file.isDirectory())
 				throw new FileNotFoundException();
 			BufferedReader br = new BufferedReader(new FileReader(file));
